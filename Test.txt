@@ -1,0 +1,11 @@
+-----14/11/2023 21:16-----
+
+Envoi d'un premier fichier sur la branche master après initialisation du repository
+via les commandes
+
+git config
+git init
+git remote
+git add
+git commit
+git push
