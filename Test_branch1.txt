@@ -1,5 +1,7 @@
 -----14/11/2023 21:29-----
 
 Envoi d'un fichier sur une branche nouvellement créer via la commande
+Nommer le fichier selon sa fonction (feature/branch1, view/branch1 etc.)
 
 git checkout -b branch1
+
