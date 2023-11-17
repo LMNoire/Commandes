@@ -1,0 +1,7 @@
+-----17/11/2023 20:57-----
+
+Pull an existing branch
+Adding a fictive new function then merge the branch1 with
+the master branch.
+
+git pull
