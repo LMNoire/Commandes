@@ -2,6 +2,6 @@
 
 Pull an existing branch
 Adding a fictive new function then merge the branch1 with
-the master branch.
+the master branch
 
 git pull
