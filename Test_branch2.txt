@@ -1,8 +1,8 @@
 -----17/11/2023 20:43-----
 
-Sending a fictive new function with my branch
-then merge my master branch with it. Deleting 
-the unecessary branch next
+Sending a fictive new function with my branch2
+then merge my master branch with it. 
+Also deleting the unecessary branch2 
 
 git merge
 git branch -d 
