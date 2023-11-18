@@ -1,0 +1,6 @@
+-----18/11/2023 01:03-----
+
+Cloning a distant repository and create a new branch
+Adding a new function and merge with master
+
+git clone
