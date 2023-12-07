@@ -1,20 +1,19 @@
-This Test repository is about learning and discovering Git Bash commands
+Ce repository m'a servi à découvrir et utiliser les principales commandes GitBash, notamment pour :
 
-I learned how to :
-Config your mail and username
-Init your local repository
-Remote your local repository to the distant repository
-Remove remote
-Checking remote
-Adding one or more files
-Commit and push them
-Clone a distant repository
-Create my branch
-Pull a branch
-Merge two branchs
-Check status of my commits
-Check the log of the commits
-Switching between branch
+Configuer son mail et identifiant
+Initialiser un local repository
+Lier un local repository à un distant repository
+Supprimer la liaison entre les repository
+Verifier la liaison entre les repository
+Ajouter un ou plusieurs fichiers
+Commit et push un ou plusieurs fichiers
+Cloner un distant repository
+Créer ma branche
+Pull une branche
+Merge deux branches
+Vérifier le statut de mes commits
+Vérifier le log des commits
+Changer de branche
 
 git config 
 git init
