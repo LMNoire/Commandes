@@ -1,36 +1,60 @@
 # Description
 
-Ce repository m'a servi à découvrir et utiliser les principales commandes GitBash, notamment pour :
+Ce repository m'a servi à découvrir et utiliser les principales commandes GitBash et Linux, notamment pour :
 
-- Configuer son mail et identifiant
-- Initialiser un local repository
-- Lier un local repository à un distant repository
-- Supprimer la liaison entre les repository
-- Verifier la liaison entre les repository
-- Ajouter un ou plusieurs fichiers
-- Commit et push un ou plusieurs fichiers
-- Cloner un distant repository
-- Créer ma branche
-- Pull une branche
-- Merge deux branches
-- Vérifier le statut de mes commits
-- Vérifier le log des commits
-- Changer de branche
+# Gitbash
+- Configuer son mail et identifiant (git config)
+- Initialiser un local repository (git init)
+- Lier un local repository à un distant repository (git remote add origin)
+- Supprimer la liaison entre les repository (git remote remove origin)
+- Verifier la liaison entre les repository (git remote -v)
+- Ajouter un ou plusieurs fichiers (git add .)
+- Commit et push un ou plusieurs fichiers (git commit -m "", git push)
+- Cloner un distant repository (git clone)
+- Créer ma branche (git branch, git checkout -b)
+- Pull une branche (git pull)
+- Merge deux branches (git clone)
+- Vérifier le statut de mes commits (git status)
+- Vérifier le log des commits (git log, git log --oneline)
+- Changer de branche (git checkout)
+- Créer un fichier (git touch)
 
-- git config 
-- git init
-- git remote add origin
-- git add
-- git commit -m ""
-- git push
-- git branch
-- git checkout
-- git chekout -b
-- git pull
-- git clone
-- git log
-- git log --oneline
-- git status
-- touch 
-- git remote -v
-- git remote remove
+# Linux
+- Afficher le contenu d'un répertoire (ls, ls -al, ls -R)
+- Définir, consulter et retirer un alias (alias, unalias)
+- Afficher le répertoire de travail (pwd)
+- Changer de répertoire (cd, cd -, cd ..)
+- Copier un fichier ou répertoire (cp file_to_copy.txt new_file.txt, cp -r dir_to_copy/ new_copy_dir/)
+- Supprimer un fichier ou répertoire vide ou utilisé (rm file_to_remove.txt, rm -r dir_to_remove/, rm -rf dir_with_content_to_remove/)
+- Renommer un fichier (mv old_file.txt new_named_file.txt)
+- Déplacer un fichier (mv source_file destination_folder/)
+- Créer un répertoire (mkdir new_dir/)
+- Créer un répertoire avec sous répertoire (mkdir -p new_dir/subfolder/)
+- Afficher la page de manuel (man)
+- Créer un nouveau fichier (touch new_file_name)
+- Changer les permissions d'un fichier (chmode +r, +w, +x file_to_change)
+- Executer un fichier (./)
+- Fermer sa session (exit)
+- Agir en tant d'administrateur (sudo)
+- Eteindre l'ordinateur ou annuler l'opération (shutdown, shutdown -c)
+- Extraire un fichier zip (unzip)
+- Afficher du texte dans le terminal (echo)
+- Concaténer un fichier (cat)
+- Afficher les processus actuellement exécutés (ps)
+- Stopper un programme de manière dégradée (kill)
+- Demander une IP ou tester une connexion (ping)
+- Lancer l'éditeur de texte Vim (vim)
+- Consulter son historique de commandes (history)
+- Changer le mot de passe du compte utilisateur (passwd)
+- Supprimer un fichier de manière sécurisée (shred, shred -u)
+- Afficher le début d'un fichier (head, head -n)
+- Afficher la fin d'un fichier (tail, tail -n)
+- Rechercher une expression (grep, grep -c)
+- Afficher l'utilisateur actuel (whoami)
+- Afficher la description d'une ligne de commande (whatis)
+- Obtenir le nombre de lignes, de mots dans un fichier, sa taille ainsi que son nom (wc, wc -w)
+- Afficher les informations du système d'exploitation (uname -a)
+- Afficher les informations sur le noyau, le matériel ainsi que le shell (neofetch)
+- Trouver un fichier (find ./ -name "file_to_find.txt" # ./file_to_find.txt)
+- Récupérer du contenu venant d'internet (wget)
+- Trouver de l'aide (ls --help)
