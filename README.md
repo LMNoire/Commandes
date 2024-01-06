@@ -1,3 +1,4 @@
+DESCRIPTION
 Ce repository m'a servi à découvrir et utiliser les principales commandes GitBash, notamment pour :
 
 - Configuer son mail et identifiant
