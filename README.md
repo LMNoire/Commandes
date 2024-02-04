@@ -1,6 +1,6 @@
 # Description
 
-Ce repository m'a servi à découvrir et utiliser les principales commandes GitBash et Linux, notamment pour :
+Ce repository m'a servi à découvrir et utiliser et recenser les principales commandes GitBash, Linux et Docker, notamment pour :
 
 # Gitbash
 - Configuer son mail et identifiant (git config)
@@ -58,3 +58,15 @@ Ce repository m'a servi à découvrir et utiliser les principales commandes GitB
 - Trouver un fichier (find ./ -name "file_to_find.txt" # ./file_to_find.txt)
 - Récupérer du contenu venant d'internet (wget)
 - Trouver de l'aide (ls --help)
+
+# Docker
+- Vérifier sa version (compose version)
+- Lister ses containers (ps ou container ls, -a)
+- Lister ses images (image ls)
+- Stopper un container (stop)
+- Supprimer un container (rm)
+- Supprimer une image (image rm)
+- Instancier une image (run + -d, --name)
+- Changer de port (run -p xx:xx)
+- Instancier via docker-compose.yaml (docker-compose up, -d)
+- Stopper le container (docker-compose down)
