@@ -1,0 +1,30 @@
+Vérifier la version de docker engine
+	docker -v
+Vérifier la version de docker compose
+	docker compose version
+Lister les containers locaux
+	docker ps
+	docker ps -a
+	docker container ls
+	docker container ls -a
+Lister les images locales
+	docker image ls
+	docker image ls -a
+Stopper le container ciblé
+	docker stop <container_name>/<container_id>
+Supprimer le container ciblé
+	docker rm <container_name>/<container_id>
+Supprimer l'image ciblée
+	docker image rm <image_name>/<image_id>
+Instancier une image localement 
+	docker run <image_name>
+Changer de port(s) à l'instanciation
+	docker run -p xxxx:xx <image_name>	
+Attribuer un nom à l'instanciation
+	docker run --name <projet_name>
+Instancier un container via fichier docker-compose.yaml
+	docker-compose up 
+	docker-compose up -d
+Stopper le container
+	docker-compose down	
+
