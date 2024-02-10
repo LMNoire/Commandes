@@ -1,7 +1,5 @@
 # Description
-
 Ce repository m'a servi à découvrir et utiliser et recenser les principales commandes GitBash, Linux et Docker, notamment pour :
-
 # Gitbash
 - Configuer son mail et identifiant (git config)
 - Initialiser un local repository (git init)
@@ -18,7 +16,6 @@ Ce repository m'a servi à découvrir et utiliser et recenser les principales co
 - Vérifier le log des commits (git log, git log --oneline)
 - Changer de branche (git checkout)
 - Créer un fichier (git touch)
-
 # Linux
 - Afficher le contenu d'un répertoire (ls, ls -al, ls -R)
 - Définir, consulter et retirer un alias (alias, unalias)
@@ -58,7 +55,6 @@ Ce repository m'a servi à découvrir et utiliser et recenser les principales co
 - Trouver un fichier (find ./ -name "file_to_find.txt" # ./file_to_find.txt)
 - Récupérer du contenu venant d'internet (wget)
 - Trouver de l'aide (ls --help)
-
 # Docker
 - Vérifier sa version (compose version)
 - Lister ses containers (ps ou container ls, -a)
