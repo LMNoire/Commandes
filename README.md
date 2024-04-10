@@ -1,5 +1,5 @@
 # Description
-Ce repository m'a servi à découvrir et utiliser et recenser les principales commandes GitBash, Linux et Docker, notamment pour :
+Ce repository m'a servi à découvrir et utiliser et recenser les principales commandes GitBash, Linux, MongoDb et Docker, notamment pour :
 # Gitbash
 - Configuer son mail et identifiant (git config)
 - Initialiser un local repository (git init)
@@ -55,6 +55,18 @@ Ce repository m'a servi à découvrir et utiliser et recenser les principales co
 - Trouver un fichier (find ./ -name "file_to_find.txt" # ./file_to_find.txt)
 - Récupérer du contenu venant d'internet (wget)
 - Trouver de l'aide (ls --help)
+# MongoDB
+- Afficher des informations (db, db.hello)
+- Naviguer et utiliser une bdd (use, getSibling)
+- Activer désactiver la télémetrie (disableTelemetry, enable)
+- Insérer un document (insertOne) ou plusieurs documents (insertMany)
+- Rechercher un document (find, findOne)
+- Mettre un document (updateOne) ou plusieurs (updateMany) à jour
+- Recherche, modifie et retourne le document (findAndModify)
+- Remplace la valeur d'un field (replaceOne)
+- Supprimer un ou plusieurs documents (deleteOne, deleteMany)
+- Les opérateurs de requetes ($eq, $in, $and, $elemMatch, $set, $push, $addToSet, $inc, upsert)
+- Les opérateurs de requetes comparatifs ($gt, $gte, $lt, $lte)
 # Docker
 - Vérifier sa version (compose version)
 - Lister ses containers (ps ou container ls, -a)
