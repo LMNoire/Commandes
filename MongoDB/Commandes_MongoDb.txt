@@ -1,0 +1,140 @@
+GENERAL
+Afficher la bdd actuelle
+	db
+Basculer sur une autre bdd
+	use <database>
+Accéder à une autre bdd sans changer contexte
+	db.getSiblingDB(<database>)
+Retourne les infos décrivant le role de l'instance
+	db.hello()
+Active/Desactive l'usage de la télémetrie
+	disableTelemetry()
+	enableTelemetry()
+CRUD
+Insérer un document
+	db.<collection>.insertOne()
+Insérer plusieurs documents
+	db.<collection>.insertMany()
+Rechercher un ou plusieurs documents
+	db.<collection>.find()
+	db.<collection>.findOne()
+//ex recherche par id
+	db.<collection>.find({ _id: ObjectId("") })
+//ex recherche de ville avec l'opérateur $in
+	db.<collection>.find({ city: { $in: ["PHOENIX", "CHICAGO"] } })
+Mettre à jour un document
+	db.<collection>.updateOne(
+		<filter>,
+		<update>,
+		{options})
+//ex update du field subscribers de la bdd podcasts selon l'id
+	db.podcasts.updateOne(
+		{ _id: ObjectId("...") },
+		{ $set: { subscribers: 98562 } })
+//ex update de l'arrayfield hosts de la bdd podcast avec l'opérateur $push
+	db.podcasts.updateOne({ _id: ObjectId("...")},
+		{ $push: { hosts: "Nic Raboy" } })
+//ex update d'un field topics de la bdd podcasts selon le titre avec un tableau de valeurs. Si field topics absent, création avec upsert 
+	db.podcasts.updateOne(
+		{ title: "The Developer Hub" },
+		{ $set: { topics: ["databases", "MongoDB"] } },
+		{ upsert: true })
+//ex update de l'arrayfield diet de la bdd birds selon l'id avec un tableau de valeurs
+	db.birds.updateOne(
+    	{ _id: ObjectId("6268471e613e55b82d7065d7") },
+    	{ $addToSet: { diet: { $each: ["newts", "opossum", "skunks", "squirrels"] } } }
+	)
+//ex update du field last_updated et incrémentation du field sightings de la bdd birds selon le common_name. Si fields last_updated & sightings absents, création avec upsert
+	db.birds.updateOne(
+  		{ common_name: "Robin Redbreast" },
+  		{ 
+    			$inc: { sightings: 1 },
+    			$set: { last_updated: new Date() } 
+  		},
+  		{ upsert: true } 
+	);
+Mettre à jour plusieurs documents
+	db.<collection>.updateMany()
+//ex update de tous les documents de la bdd books ayant une publishedDate < $lt dont le status sera modifié, ou créé si absent, avec $set 
+	db.books.updateMany(
+  		{ publishedDate: { $lt: new Date("2019-01-01") } },
+  		{ $set: { status: "LEGACY" } }
+	)
+//ex update de tous les documents de la bdd birds ayant un common_name == $in dont le field last_seen sera modifié, ou créé si absent, avec $set
+	db.birds.updateMany(
+  		{ common_name: { $in: ["Blue Jay", "Grackle"] } },
+  		{ $set: { last_seen: new Date("2022-01-01") } }
+	);
+Modifier puis retourner le document
+	db.<collection>.findAndModify()
+//ex modification d'un document par _id avec incrémentation du field downloads et affichage de ce même document une fois modifié avec new
+	db.podcasts.findAndModify({
+		query: { _id: ObjectId("62c7361f4bf2017af21ccdde") },
+		update: { $inc: { downloads: 1 } },
+		new: true
+	})
+Remplacer un seul document
+	db.<collection>.replaceOne(
+		<filter>, 
+		<replacement>, 
+		{options})
+Supprimer un document
+	db.<collection>.deleteOne({ _id: Objectid("...") })
+Supprimer plusieurs documents
+	db.<collection>.deleteMany({<field>: <value>})
+OPERATEURS
+Attribuer une valeur à un field et le créé si absent
+	$set
+Attribuer une valeur à un arrayfield et le créé si absent
+	$push
+Si le document à modifier n'existe pas, créé le document avec les valeurs fournies
+	upsert
+Selectionner un document selon un field et une value
+	$eq
+Selectionner tous les documents selon un field et une value dans un tableau
+	$in
+Selectionner tous les documents ayant un tableau avec au moins une des valeurs renseignée
+	$elemMatch
+//ex recherhe des documents de la bdd transactions ayant dans un tableau la value sell pour le field transaction_code et un amount < $lte
+	db.transactions.find({
+    		"transactions": {
+        		$elemMatch: {
+            			"transaction_code": "sell",
+            			"amount": { $lte: 4500 }
+        		}
+    		} })
+Opérateur greater than
+	$gt
+//ex recherche des documents de la bdd sales dont les items ont un price > $gt
+	db.sales.find({ "items.price": { $gt: 50 } })
+Opérateur greater than or equal to
+	$gte
+Opérateur less than
+	$lt
+Opérateur less than or equal to
+	$lte
+Opérateur and afin de cumuler les conditions
+	$and
+//ex recherche des documents de la bdd routes ayant pour valeur du field airline Southwest Airlines et dont la valeur du field stops est >= $gte
+	db.routes.find({
+		$and: [{ "airline": "Southwest Airlines" }, {"stops": {$gte: 1} }] })
+//ex avec la même requete simplifiée
+	db.routes.find({ "airline": "Southwest Airlines", "stops": {$gte: 1} })
+Opérateur or afin de choisir plusieurs conditions
+	$or
+//ex recherche des documents de la bdd routes ayant pour valeur du field dst_airport ou src_airport == SEA
+	db.routes.find({
+		$or: [{ dst_airport: "SEA" }, { src_airport: "SEA" }] })
+//ex d'une recherche des documents de la bdd routes avec de multiples paramètres $or et $and
+	db.routes.find({
+		$and: [
+			{ $or: [
+				{ dst_airport: "SEA" },
+				{ src_airport: "SEA" }
+			]},
+			{ $or: [
+				{ airline: "American Airlines"},
+				{ airplane: 320 }
+			]},
+		]})
+Expliciter $and dans cette situation car un json ne peut contenir une clé qu'une seule fois. Les suivantes écrasant la première. Sans $and dans cette situation, seul le second $or sera pris en compte
