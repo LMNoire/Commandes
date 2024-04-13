@@ -1,6 +1,8 @@
 GENERAL
 Afficher la bdd actuelle
 	db
+Afficher les collections présentent sur la bdd
+	show collections
 Basculer sur une autre bdd
 	use <database>
 Accéder à une autre bdd sans changer contexte
@@ -10,6 +12,7 @@ Retourne les infos décrivant le role de l'instance
 Active/Desactive l'usage de la télémetrie
 	disableTelemetry()
 	enableTelemetry()
+
 CRUD
 Insérer un document
 	db.<collection>.insertOne()
@@ -82,6 +85,7 @@ Supprimer un document
 	db.<collection>.deleteOne({ _id: Objectid("...") })
 Supprimer plusieurs documents
 	db.<collection>.deleteMany({<field>: <value>})
+
 OPERATEURS
 Attribuer une valeur à un field et le créé si absent
 	$set
@@ -138,3 +142,64 @@ Opérateur or afin de choisir plusieurs conditions
 			]},
 		]})
 Expliciter $and dans cette situation car un json ne peut contenir une clé qu'une seule fois. Les suivantes écrasant la première. Sans $and dans cette situation, seul le second $or sera pris en compte
+
+TRIER ET LIMITER RESULTATS
+Trier les résultats par données croissantes
+	sort({<field>: 1})
+//ex d'une recherche des companies de la category "music" triés alphabétiquement par "name"
+	db.companies.find({ category_code: "music" }).sort({ name: 1 });
+//ex d'une recherche des sales triés par "date" 
+	db.sales.find().sort({date: 1})
+Trier les résultats par données décroissantes
+	sort({<field>: -1})
+//ex d'une recherche des sales du moins récent au plus récent ayant été réalisées en ligne et pour lesquelles un coupon a été utilisé
+	db.sales.find({
+    		"purchaseMethod": "Online",
+    		"couponUsed": true
+	}).sort({
+    		"saleDate": -1
+	})
+Limiter les résultats d'une recherche
+	limit()
+//ex d'une recherche des companies de la category "music" triées par nombre d'employés de manière décroissante et dont les résultats sont limités à 3
+	db.companies
+  	.find({ category_code: "music" })
+  	.sort({ number_of_employees: -1, _id: 1 })
+  	.limit(3);
+//ex d'une recherche des sales ayant eu lieu à Londres, avec pour items dans la commandes 3 valeurs et triées par date de vente du plus ancien au plus récent et limité à 3 résultats
+	db.sales.find({
+    		"storeLocation": "London",
+    		"items.name": {
+        		$in: ["laptop", "backpack", "printer paper"]
+    		}
+		}).sort({
+    			"saleDate": -1
+		}).limit(3)	
+Inclure l'affichage d'un field lors de la recherche de document(s) afin de la rendre plus lisible ou alléger la requete
+//ex d'une recherche des inspections ayant eu pour cible les entreprises du secteur restaurant et pour lesquelles l'ont voudrait afficher uniquement le nom du restaurant et le résultat de son inspection
+	db.inspections.find(
+  		{ sector: "Restaurant - 818" },
+  		{ business_name: 1, result: 1 }
+	)
+Exclure l'affichage d'un field lors de la recherche de document(s) afin de la rendre plus lisible ou alléger la requete
+//ex d'une recherche des inspections ayant eu pour résultat "Pass" ou "Warning" et pour lesquelles nous ne souhaiterions pas récupérer la date de l'inspection ou le code postal
+	db.inspections.find(
+  		{ result: { $in: ["Pass", "Warning"] } },
+  		{ date: 0, "address.zip": 0 }
+	)
+Il n'est possible de combiner inclure et exclure uniquement lorsque l'ont veut cacher l'_id
+//ex d'une recherche des inspections dans le secteur de la restauration pour laquelle nous voudrions afficher le nom de l'entreprise, le résultat du test mais pas l'_id du document
+// Return all restaurant inspections - business name and result fields only
+	db.inspections.find(
+  		{ sector: "Restaurant - 818" },
+  		{ business_name: 1, result: 1, _id: 0 }
+	)
+Compter le nombre de documents appartenant à une collection
+	db.collection.countDocuments( <query>, <options> )
+//ex d'une recherche du nombre de documents dont le field "tripduration" est > 120 et ayant un "usertype" Subscriber
+	db.trips.countDocuments({ tripduration: { $gt: 120 }, usertype: "Subscriber" })
+//ex d'une recherhe du nombre de documents dans la collection sales contenant un item.name "laptop" et dont le prix est < 600
+	db.sales.countDocuments({
+    	"items.name": "laptop",
+    	"items.price": { $lt: 600 }
+	})
