@@ -99,6 +99,8 @@ Selectionner tous les documents selon un field et une value dans un tableau
 	$in
 Selectionner tous les documents ayant un tableau avec au moins une des valeurs renseignée
 	$elemMatch
+Selectionner tous les documents ayant dans une de leurs valeurs l'expression renseignée en tant que string
+	$regex
 //ex recherhe des documents de la bdd transactions ayant dans un tableau la value sell pour le field transaction_code et un amount < $lte
 	db.transactions.find({
     		"transactions": {
