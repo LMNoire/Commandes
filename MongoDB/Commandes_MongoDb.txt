@@ -205,3 +205,46 @@ Compter le nombre de documents appartenant à une collection
     	"items.name": "laptop",
     	"items.price": { $lt: 600 }
 	})
+Rechercher des documents avec compound et search
+//ex d'une recherche des documents dans la collection birds devant contenir field dans habitat et pour lesquels la longueur d'ailes devrait être > 45
+Un score est donné aux resultats avec une valeur de 5 afin de trier les documents par pertinence
+$search {
+  "compound": {
+    "must": [{
+      "text": {
+        "query": "field",
+        "path": "habitat"
+      }
+    }],
+    "should": [{
+      "range": {
+        "gte": 45,
+        "path": "wingspan_cm",
+        "score": {"constant": {"value": 5}}
+      }
+    }]
+  }
+}
+Grouper les documents recherchés avec facet
+//ex d'une recherche dans la collection birds des documents ayant "Northern Cardinal" dans le champ common_name. Les résultats sont alors triés dans des buckets représentés par 4 période de dates (boundaries)
+$searchMeta: {
+    "facet": {
+        "operator": {
+            "text": {
+            "query": ["Northern Cardinal"],
+            "path": "common_name"
+            }
+        },
+        "facets": {
+            "sightingWeekFacet": {
+                "type": "date",
+                "path": "sighting",
+                "boundaries": [ISODate("2022-01-01"), 
+                    ISODate("2022-01-08"),
+                    ISODate("2022-01-15"),
+                    ISODate("2022-01-22")],
+                "default" : "other"
+            }
+        }
+    }
+}
