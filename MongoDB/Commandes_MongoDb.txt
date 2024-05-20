@@ -248,3 +248,13 @@ $searchMeta: {
         }
     }
 }
+
+TRANSACTIONS ACID
+Démarrer une session
+	startSession()
+Démarrer une transaction
+	startTransaction()
+Commit la transaction dans la bdd
+	commitTransaction()
+Annuler la transaction
+	abortTransaction()
